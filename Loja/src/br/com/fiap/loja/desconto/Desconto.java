@@ -16,10 +16,10 @@ public abstract class Desconto {
 	
 	public final BigDecimal calcular(Pedido pedido) {
 		if ( deveAplicar(pedido) ) {
-			return aplicarDesconto(pedido);
+			return aplicarDesconto(pedido).setScale(2, RoundingMode.HALF_UP);
 		}
 		
-		return proximo.calcular(pedido).setScale(2, RoundingMode.HALF_UP);
+		return proximo.calcular(pedido);
 	}
 
 	protected abstract BigDecimal aplicarDesconto(Pedido pedido);

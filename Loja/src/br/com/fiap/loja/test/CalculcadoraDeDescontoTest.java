@@ -1,9 +1,8 @@
 package br.com.fiap.loja.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +26,7 @@ class CalculcadoraDeDescontoTest {
 		CalculcadoraDeDesconto calculcadoraDeDesconto = new CalculcadoraDeDesconto();
 		BigDecimal desconto = calculcadoraDeDesconto.calcular(pedido);
 		
-		assertEquals(new BigDecimal("100.00"), desconto.setScale(2, RoundingMode.HALF_UP));
+		assertEquals(new BigDecimal("100.00"), desconto);
 	}
 	
 	@Test
