@@ -6,8 +6,8 @@ import java.math.BigDecimal;
 
 import org.junit.jupiter.api.Test;
 
-import br.com.fiap.loja.Pedido;
 import br.com.fiap.loja.desconto.CalculcadoraDeDesconto;
+import br.com.fiap.loja.situacao.Pedido;
 
 class CalculcadoraDeDescontoTest {
 

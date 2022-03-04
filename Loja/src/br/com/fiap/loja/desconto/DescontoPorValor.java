@@ -2,7 +2,7 @@ package br.com.fiap.loja.desconto;
 
 import java.math.BigDecimal;
 
-import br.com.fiap.loja.Pedido;
+import br.com.fiap.loja.situacao.Pedido;
 
 public class DescontoPorValor extends Desconto {
 

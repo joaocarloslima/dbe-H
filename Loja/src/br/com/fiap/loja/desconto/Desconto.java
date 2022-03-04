@@ -3,7 +3,7 @@ package br.com.fiap.loja.desconto;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import br.com.fiap.loja.Pedido;
+import br.com.fiap.loja.situacao.Pedido;
 
 public abstract class Desconto {
 	
