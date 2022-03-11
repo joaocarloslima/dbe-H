@@ -3,8 +3,15 @@ import java.math.BigDecimal;
 
 import br.com.fiap.loja.situacao.Pedido;
 
-public interface Imposto {
+public abstract class Imposto {
 	
-	BigDecimal calcular (Pedido pedido);
+	protected Imposto outroImposto;
+	
+	public Imposto(Imposto outroImposto) {
+		super();
+		this.outroImposto = outroImposto;
+	}
+
+	abstract BigDecimal calcular (Pedido pedido);
 
 }

@@ -14,18 +14,10 @@ public class TestaImposto {
 		Pedido pedido = new Pedido(new BigDecimal(100));
 		CalculadoraDeImposto calculadoraDeImposto = new CalculadoraDeImposto();
 		
-		calculadoraDeImposto.setImposto(new Iss());
+		calculadoraDeImposto.setImposto(new Icms(new Iss(new Ipi(null))));
 		BigDecimal imposto = calculadoraDeImposto.calcular(pedido);
 		System.out.println(imposto);
-		
-		calculadoraDeImposto.setImposto(new Icms());
-		imposto = calculadoraDeImposto.calcular(pedido);
-		System.out.println(imposto);
-		
-		calculadoraDeImposto.setImposto(new Ipi());
-		imposto = calculadoraDeImposto.calcular(pedido);
-		System.out.println(imposto);
-		
+	
 	}
 
 }

@@ -14,6 +14,9 @@ public class Pedido {
 		this.valor = valor;
 		this.manager = new EventManager();
 		this.setSituacao(new Aberto());
+		
+		PedidoFacade.criarPedido();
+		
 	}
 	
 	public Pedido(BigDecimal valor, int totalDeItens) {
@@ -22,6 +25,8 @@ public class Pedido {
 		this.totalDeItens = totalDeItens;
 		this.manager = new EventManager();
 		this.setSituacao(new Aberto());
+		
+		PedidoFacade.criarPedido();
 	}
 	
 	public void abrirChamado() {
@@ -49,6 +54,11 @@ public class Pedido {
 	}
 
 	public BigDecimal getValor() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		return valor;
 	}
 
