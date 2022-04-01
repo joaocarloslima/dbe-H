@@ -1,33 +1,68 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-> 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head> 
+<h:head></h:head>
 
-<body> 
-	<h1>New Project</h1>
+<body style="background-color: #eee">
 
+	<!-- MENU -->
+	<div class="card">
+		<h:form>
+			<p:tabMenu activeIndex="#{param.i}">
+				<p:menuitem value="Home" icon="pi pi-fw pi-home">
+					<f:param name="i" value="0" />
+				</p:menuitem>
+				<p:menuitem value="Setup" icon="pi pi-fw pi-desktop">
+					<f:param name="i" value="1" />
+				</p:menuitem>
+				<p:menuitem value="Profile" icon="pi pi-fw pi-user">
+					<f:param name="i" value="2" />
+				</p:menuitem>
+			</p:tabMenu>
+		</h:form>
+	</div>
+
+	<!-- FORM -->
 	<h:form>
-		<h:panelGrid columns="1">
-			<h:outputLabel value="Name" />
-			<h:inputText />
+	<p:card style="width: 25em; margin: 1em auto">
+
+			<f:facet name="title">New Setup</f:facet>
 			
-			<h:outputLabel value="Description" />
-			<h:inputTextarea value="" />
-			
-			<h:outputLabel value="Price" />
-			<h:inputText value="" />
-			
-		
-		</h:panelGrid>
-		
+			<div class="ui-fluid">
+				<div class="p-field">
+					<label for="name">Name</label>
+					<p:inputText value="#{setupBean.setup.name}" id="name" type="text" />
+				</div>
+				<div class="p-field">
+					<label for="description">Description</label>
+					<p:inputTextarea value="#{setupBean.setup.description}"  id="description" type="text" />
+				</div>
+				<div class="p-field">
+					<label for="price">Price</label>
+					<p:inputNumber 
+						value="#{setupBean.setup.price}" 
+						id="price" 
+						symbol="R$ "
+	                    decimalSeparator="," 
+	                    thousandSeparator="." 
+	                 />
+				</div>
+				
+			</div>
+	
+			<f:facet name="footer">
+				<p:commandButton action="#{setupBean.save()}" icon="pi pi-check" value="Save" />
+				<p:commandButton icon="pi pi-times" value="Cancel"
+					styleClass="ui-button-secondary" style="margin-left: .5em" />
+			</f:facet>
+		</p:card>
 	</h:form>
 	
 
 
-</body> 
+</body>
 </html>
