@@ -3,6 +3,7 @@
   <persistence-unit name="progamer-persistence-unit" transaction-type="RESOURCE_LOCAL">
     <description>Forge Persistence Unit</description>
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>br.com.fiap.model.Setup</class>
     
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>

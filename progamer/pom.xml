@@ -15,30 +15,46 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-
+		
+		<!-- JSF -->
 		<dependency>
 			<groupId>javax.faces</groupId>
 			<artifactId>javax.faces-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- CDI -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Primefaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>11.0.0</version>
 		</dependency>
 
+		<!-- JPA -->
 		<dependency>
-      <groupId>org.hibernate.javax.persistence</groupId>
-      <artifactId>hibernate-jpa-2.0-api</artifactId>
-      <scope>provided</scope>
-    </dependency>
+	      <groupId>org.hibernate.javax.persistence</groupId>
+	      <artifactId>hibernate-jpa-2.0-api</artifactId>
+	      <scope>provided</scope>
+	    </dependency>
+	    
+	    <!-- Pretty Faces -->
+	    <dependency>
+		    <groupId>org.ocpsoft.rewrite</groupId>
+		    <artifactId>rewrite-servlet</artifactId>
+		    <version>3.4.4.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.ocpsoft.rewrite</groupId>
+		    <artifactId>rewrite-config-prettyfaces</artifactId>
+		    <version>3.4.4.Final</version>
+		</dependency>
 
 	</dependencies>
 	<dependencyManagement>
