@@ -9,7 +9,7 @@
 	<ui:define name="content">
 		
 		<!-- FORM -->
-		<h:form>
+		<h:form enctype="multipart/form-data">
 		    <p:messages id="messages" closable="true">
 		    	<p:autoUpdate/>
 		    </p:messages>
@@ -27,7 +27,9 @@
 							type="text" 
 							required="true"
 							requiredMessage="O campo nome é obrigatório"
-						/>
+						>
+							<f:ajax event="blur" render="messages" />
+						</p:inputText>
 					</div>
 					<div class="p-field">
 						<label for="description">Description</label>
@@ -37,6 +39,7 @@
 							type="text"
 							validatorMessage="A descrição deve ter pelo menos 10 caracteres e no máximo 255"
 							>
+							<f:ajax event="blur" render="messages" />
 							<f:validateLength minimum="10" maximum="255" />
 						</p:inputTextarea>
 					</div>
@@ -50,8 +53,19 @@
 							thousandSeparator="." 
 							required="true"
 						>
+							<f:ajax event="blur" render="messages" />
 							<f:validateDoubleRange minimum="1" />
 						</p:inputNumber>
+					</div>
+					
+					<div class="p-field">
+						<label for="image">Image File: </label>
+						<p:fileUpload 
+							value="#{setupBean.image}" 
+							id="image" 
+							mode="simple" 
+							skinSimple="true"
+						/>
 					</div>
 
 				</div>
