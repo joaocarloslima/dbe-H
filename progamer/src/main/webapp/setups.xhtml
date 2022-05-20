@@ -12,7 +12,9 @@
 		    </p:messages>
 			<h:form>
 				<div class="card" style="margin: 1em">
-					<p:dataTable var="setup" value="#{setupBean.setups}">
+					<p:dataTable var="setup" value="#{setupBean.setups}" editable="true">
+					<p:ajax event="rowEdit" listener="#{setupBean.update()}" update="messages"/>
+					
 						<p:column headerText="image">
 							<img 
 								src="#{request.contextPath}#{setup.imagePath}"
@@ -25,7 +27,14 @@
 						</p:column>
 	
 						<p:column headerText="Name">
-							<h:outputText value="#{setup.name}" />
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{setup.name}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{setup.name}" />
+								</f:facet>
+							</p:cellEditor>
 						</p:column>
 	
 						<p:column headerText="Description">
@@ -35,6 +44,14 @@
 						<p:column headerText="Price">
 							<h:outputText value="#{setup.price}" />
 						</p:column>
+						
+						<p:column style="width:4rem">
+							<p:commandButton action="#{setupBean.remove(setup)}" icon="pi pi-trash"  styleClass="rounded-button ui-button-danger ui-button-flat"   />
+						</p:column>
+						
+						<p:column style="width:4rem">
+			                <p:rowEditor editTitle="Edit Row" cancelTitle="Cancel Edit" saveTitle="Save Row"/>
+			            </p:column>
 					</p:dataTable>
 				</div>
 			</h:form>

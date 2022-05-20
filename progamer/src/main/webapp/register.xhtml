@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+
+<body style="background-color: #ddd">		
+		<!-- FORM -->
+		<h:form enctype="multipart/form-data">
+		    <p:messages id="messages" closable="true">
+		    	<p:autoUpdate/>
+		    </p:messages>
+		    
+			<p:card style="width: 25em; margin: 1em auto">
+
+				<f:facet name="title">Create Account</f:facet>
+
+				<div class="ui-fluid">
+					<div class="p-field">
+						<label for="name">Name</label>
+						<p:inputText 
+							value="#{userBean.user.name}" 
+							id="name" 
+							type="text" 
+							required="true"
+							requiredMessage="O campo nome é obrigatório"
+						>
+							<f:ajax event="blur" render="messages" />
+						</p:inputText>
+					</div>
+					<div class="p-field">
+						<label for="birthday">Birthday</label>
+						<p:datePicker
+							value="#{userBean.user.birthday}"
+							id="birthday" 
+							>
+						</p:datePicker>
+					</div>
+					<div class="p-field">
+						<label for="email">E-mail</label>
+						<p:inputText
+							value="#{userBean.user.email}" 
+							id="email"
+							required="true"
+						>
+							<f:ajax event="blur" render="messages" />
+						</p:inputText>
+					</div>
+					
+					<div class="p-field">
+						<label for="password">Password</label>
+						<p:password
+							value="#{userBean.user.password}" 
+							id="password"
+							required="true"
+							feedback="true"
+						>
+							<f:ajax event="blur" render="messages" />
+						</p:password>
+					</div>
+
+				</div>
+
+				<f:facet name="footer">
+					<p:commandButton action="#{userBean.save()}" icon="pi pi-check"
+						value="Save" />
+				</f:facet>
+			</p:card>
+		</h:form>
+
+</body>
+
+
+
+</html>

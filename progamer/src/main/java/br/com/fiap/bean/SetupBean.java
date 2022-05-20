@@ -7,6 +7,7 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.ServletContext;
 
@@ -20,6 +21,9 @@ import br.com.fiap.model.Setup;
 public class SetupBean {
 
 	private Setup setup = new Setup();
+	
+	@Inject
+	private SetupDao dao;
 	
 	private UploadedFile image;
 	
@@ -37,14 +41,14 @@ public class SetupBean {
 		out.close();
 		
 		setup.setImagePath("\\images\\setups\\" + image.getFileName());
-		new SetupDao().insert(setup);
+		dao.insert(setup);
 		
-		mostrarMensagem();
+		mostrarMensagem("Setup cadastrado com sucesso");
 		
 		return "setups?faces-redirect=true";
 	}
 
-	private void mostrarMensagem() {
+	private void mostrarMensagem(String msg) {
 		FacesContext
 			.getCurrentInstance()
 			.getExternalContext()
@@ -53,11 +57,22 @@ public class SetupBean {
 		
 		FacesContext
 			.getCurrentInstance()
-			.addMessage(null, new FacesMessage("Setup cadastrado"));
+			.addMessage(null, new FacesMessage(msg));
 	}
 	
 	public List<Setup> getSetups(){
-		return new SetupDao().list();
+		return dao.list();
+	}
+	
+	public String remove(Setup setup) {
+		dao.delete(setup);
+		mostrarMensagem("Setup apagado com sucesso");
+		return "setups?faces-redirect=true";
+	}
+	
+	public void update() {
+		dao.update(setup);
+		mostrarMensagem("Setup atualizado com sucesso");
 	}
 
 	public Setup getSetup() {

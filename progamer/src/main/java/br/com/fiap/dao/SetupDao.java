@@ -11,10 +11,10 @@ import br.com.fiap.model.Setup;
 
 public class SetupDao {
 	
+	EntityManagerFactory factory = Persistence.createEntityManagerFactory("progamer-persistence-unit");
+	EntityManager manager = factory.createEntityManager();
+
 	public void insert(Setup setup) {
-		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("progamer-persistence-unit");
-		EntityManager manager = factory.createEntityManager();
 		
 		manager.getTransaction().begin();
 		manager.persist(setup);
@@ -25,14 +25,26 @@ public class SetupDao {
 	}
 	
 	public List<Setup> list(){
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("progamer-persistence-unit");
-		EntityManager manager = factory.createEntityManager();
 		
 		TypedQuery<Setup> query = 
 				manager.createQuery("SELECT s FROM Setup s", Setup.class);
 		
 		return query.getResultList();
 		
+	}
+
+	public void delete(Setup setup) {
+		manager.getTransaction().begin();
+		setup = manager.merge(setup);
+		manager.remove(setup);
+		manager.getTransaction().commit();
+		
+	}
+
+	public void update(Setup setup) {
+		manager.getTransaction().begin();
+		setup = manager.merge(setup);
+		manager.getTransaction().commit();
 	}
 
 }
